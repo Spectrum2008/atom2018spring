@@ -1,0 +1,723 @@
+# workspace|__ modified by Honorio Benitez for the programming dvborak keyboard layout.
+# ---------|__the number keys are the same as on querty, so "8!" is not, i moved to the left as on quenrty.
+# To maximize none-editor paneItem e.g. setting-view
+'atom-workspace:not(.editor)':
+  # conflicts insert-mode ctrl-w and ctr-w in mini editor, so comment out by default
+  # 'ctrl-w z': 'vim-mode-plus:maximize-pane'
+  'cmd-enter': 'vim-mode-plus:maximize-pane'
+
+'atom-workspace .tree-view':
+  'cmd-enter': 'abort!'
+
+# all
+# -------------------------
+'atom-text-editor.vim-mode-plus':
+  'escape': 'vim-mode-plus:reset-normal-mode'
+  'ctrl-j': 'vim-mode-plus:reset-normal-mode'
+  'ctrl-/': 'vim-mode-plus:reset-normal-mode'
+
+# all except normal
+# -------------------------
+'atom-text-editor.vim-mode-plus:not(.normal-mode)':
+  'escape': 'vim-mode-plus:activate-normal-mode'
+  'ctrl-/': 'vim-mode-plus:activate-normal-mode'
+
+# all except normal
+# -------------------------
+'.platform-darwin atom-text-editor.vim-mode-plus:not(.normal-mode)':
+  'ctrl-j': 'vim-mode-plus:activate-normal-mode'
+
+# insert
+# -------------------------
+'atom-text-editor.vim-mode-plus.insert-mode':
+  'ctrl-,': 'editor:delete-to-beginning-of-word'
+  'ctrl-g': 'editor:delete-to-beginning-of-line'
+  'ctrl-f': 'vim-mode-plus:copy-from-line-above'
+  # disabled for compatibility with the common binding for going to the end of the line
+  # 'ctrl-.': 'vim-mode-plus:copy-from-line-below'
+  # 'ctrl-a': 'vim-mode-plus:insert-last-inserted'
+  'ctrl-p': 'vim-mode-plus:insert-register'
+  'ctrl-r': 'vim-mode-plus:activate-normal-mode-once'
+
+# except insert
+# -------------------------
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  # Motions
+  # -------------------------
+  'd': 'vim-mode-plus:move-left'
+  'left': 'vim-mode-plus:move-left'
+  'backspace': 'core:move-left'
+  'n': 'vim-mode-plus:move-right'
+  'space': 'vim-mode-plus:move-right'
+  'right': 'vim-mode-plus:move-right'
+
+  't': 'vim-mode-plus:move-up'
+  'h': 'vim-mode-plus:move-down'
+
+  # 't': 'vim-mode-plus:move-up-wrap'
+  # 'h': 'vim-mode-plus:move-down-wrap'
+
+  'up': 'vim-mode-plus:move-up'
+  'down': 'vim-mode-plus:move-down'
+
+  'i t': 'vim-mode-plus:move-up-screen'
+  'i h': 'vim-mode-plus:move-down-screen'
+
+  ',': 'vim-mode-plus:move-to-next-word'
+  # 'w':     'vim-mode-plus:move-to-next-alphanumeric-word'
+  '<': 'vim-mode-plus:move-to-next-whole-word'
+  '.': 'vim-mode-plus:move-to-end-of-word'
+  # 'e': 'vim-mode-plus:move-to-end-of-alphanumeric-word'
+  'i .': 'vim-mode-plus:move-to-previous-end-of-word'
+  '>': 'vim-mode-plus:move-to-end-of-whole-word'
+  'i >': 'vim-mode-plus:move-to-previous-end-of-whole-word'
+  'x': 'vim-mode-plus:move-to-previous-word'
+  # 'b':     'vim-mode-plus:move-to-previous-alphanumeric-word'
+  'X': 'vim-mode-plus:move-to-previous-whole-word'
+
+  # 'q': 'vim-mode-plus:move-to-next-subword'
+  # 'Q': 'vim-mode-plus:move-to-previous-subword'
+  # 'ctrl-e': 'vim-mode-plus:move-to-end-of-subword'
+
+  '6': 'vim-mode-plus:move-to-next-sentence'
+  '4': 'vim-mode-plus:move-to-previous-sentence'
+  # ')': 'vim-mode-plus:move-to-next-sentence-skip-blank-row'
+  # '(': 'vim-mode-plus:move-to-previous-sentence-skip-blank-row'/
+  '?': 'vim-mode-plus:move-to-next-paragraph'
+  '^': 'vim-mode-plus:move-to-previous-paragraph'
+
+  ']': 'vim-mode-plus:move-to-beginning-of-line'
+  'numpad0': 'vim-mode-plus:move-to-beginning-of-line'
+
+  '|': 'vim-mode-plus:move-to-column'
+  'home': 'vim-mode-plus:move-to-beginning-of-line'
+  '9': 'vim-mode-plus:move-to-first-character-of-line'
+  '8': 'vim-mode-plus:move-to-first-character-of-line-and-down'
+  '3': 'vim-mode-plus:move-to-last-character-of-line'
+  'end': 'vim-mode-plus:move-to-last-character-of-line'
+  'i 8': 'vim-mode-plus:move-to-last-nonblank-character-of-line-and-down'
+  '!': 'vim-mode-plus:move-to-first-character-of-line-up'
+  '`': 'vim-mode-plus:move-to-first-character-of-line-down'
+  'enter': 'vim-mode-plus:move-to-first-character-of-line-down'
+
+  'i *': 'vim-mode-plus:move-to-beginning-of-screen-line'
+  'i 9': 'vim-mode-plus:move-to-first-character-of-screen-line'
+  'i 3': 'vim-mode-plus:move-to-last-character-of-screen-line'
+  'i altgraph 3': 'vim-mode-plus:move-to-last-character-of-screen-line'
+
+  # scroll
+  'ctrl-u': 'vim-mode-plus:scroll-full-screen-down'
+  'ctrl-x': 'vim-mode-plus:scroll-full-screen-up'
+
+  'ctrl-e': 'vim-mode-plus:scroll-half-screen-down'
+  'ctrl-g': 'vim-mode-plus:scroll-half-screen-up'
+
+  'i ctrl-e': 'vim-mode-plus:scroll-quarter-screen-down'
+  'i ctrl-g': 'vim-mode-plus:scroll-quarter-screen-up'
+
+  'ctrl-.': 'vim-mode-plus:mini-scroll-down'
+  'ctrl-f': 'vim-mode-plus:mini-scroll-up'
+
+  'I': 'vim-mode-plus:move-to-last-line'
+  'i i': 'vim-mode-plus:move-to-first-line'
+  'D': 'vim-mode-plus:move-to-top-of-screen'
+  'N': 'vim-mode-plus:move-to-bottom-of-screen'
+  'M': 'vim-mode-plus:move-to-middle-of-screen'
+
+  # Operator
+  # -------------------------
+  'e': 'vim-mode-plus:delete'
+  'j': 'vim-mode-plus:change'
+  'o': 'vim-mode-plus:substitute'
+  'q': 'vim-mode-plus:delete-right' # to avoid `d x` is treated as `d d`
+
+  'E': 'vim-mode-plus:delete-to-last-character-of-line'
+  'J': 'vim-mode-plus:change-to-last-character-of-line'
+  'O': 'vim-mode-plus:substitute-line'
+  'F': 'vim-mode-plus:yank-line'
+
+  'P': 'vim-mode-plus:replace'
+  'i r': 'vim-mode-plus:toggle-preset-occurrence'
+  'i R': 'vim-mode-plus:toggle-preset-subword-occurrence'
+  'i v': 'vim-mode-plus:add-preset-occurrence-from-last-occurrence-pattern'
+
+  # '_': 'vim-mode-plus:replace-with-register'
+  'i C': 'vim-mode-plus:insert-at-beginning-of-line'
+  'V': 'vim-mode-plus:indent'
+  'W': 'vim-mode-plus:outdent'
+  '#': 'vim-mode-plus:auto-indent'
+  'H': 'vim-mode-plus:join'
+  'i H': 'vim-mode-plus:join-with-keeping-space'
+  'f': 'vim-mode-plus:yank'
+  'r': 'vim-mode-plus:put-before'
+  'p': 'vim-mode-plus:put-after'
+
+  # String transformation
+  '~': 'vim-mode-plus:toggle-case-and-move-right'
+  'i ~': 'vim-mode-plus:toggle-case'
+  'i altgraph ~': 'vim-mode-plus:toggle-case'
+  'i G': 'vim-mode-plus:upper-case'
+  'i g': 'vim-mode-plus:lower-case'
+  'i J': 'vim-mode-plus:camel-case'
+  # 'g C': 'vim-mode-plus:pascal-case'
+  'i z': 'vim-mode-plus:toggle-line-comments'
+  'i !': 'vim-mode-plus:dash-case'
+  'i space': 'vim-mode-plus:compact-spaces'
+  'i ;': 'vim-mode-plus:reflow'
+  'i ,': 'vim-mode-plus:reflow-with-stay'
+  'i |': 'vim-mode-plus:trim-string'
+  'i altgraph |': 'vim-mode-plus:trim-string'
+  'i cmd-e': 'vim-mode-plus:select-occurrence'
+  'i w': 'vim-mode-plus:split-arguments'
+  # 'g _': 'vim-mode-plus:snake-case'
+  'i p':   'vim-mode-plus:reverse' # incompatible-with-pure-vim
+  'i o':   'vim-mode-plus:sort' # incompatible-to-pure-vim
+  # 'g tab': 'vim-mode-plus:convert-to-soft-tab'
+  # 'g shift-tab': 'vim-mode-plus:convert-to-hard-tab'
+
+  # 'enter': 'vim-mode-plus:toggle-persistent-selection'
+
+  'ctrl-a': 'vim-mode-plus:increase'
+  'ctrl-q': 'vim-mode-plus:decrease'
+  'i ctrl-a': 'vim-mode-plus:increment-number' # experimental
+  'i ctrl-q': 'vim-mode-plus:decrement-number' # experimental
+
+  'ctrl-, ctrl-d': 'window:focus-pane-on-left'
+  'ctrl-, d': 'window:focus-pane-on-left'
+  'ctrl-, left': 'window:focus-pane-on-left'
+  'ctrl-, ctrl-&': 'window:focus-pane-on-right'
+  'ctrl-, n': 'window:focus-pane-on-right'
+  'ctrl-, right': 'window:focus-pane-on-right'
+  'ctrl-, ctrl-t': 'window:focus-pane-above'
+  'ctrl-, t': 'window:focus-pane-above'
+  'ctrl-, up': 'window:focus-pane-above'
+  'ctrl-, ctrl-h': 'window:focus-pane-below'
+  'ctrl-, h': 'window:focus-pane-below'
+  'ctrl-, down': 'window:focus-pane-below'
+  'ctrl-, ctrl-,': 'window:focus-next-pane'
+  'ctrl-, ,': 'window:focus-next-pane'
+  'ctrl-, ctrl-l': 'window:focus-previous-pane'
+  'ctrl-, l': 'window:focus-previous-pane'
+
+  'ctrl-, ctrl-q': 'vim-mode-plus:exchange-pane'
+  'ctrl-, q': 'vim-mode-plus:exchange-pane'
+
+  'ctrl-, T': 'vim-mode-plus:move-pane-to-very-top'
+  'ctrl-, H': 'vim-mode-plus:move-pane-to-very-bottom'
+  'ctrl-, D': 'vim-mode-plus:move-pane-to-very-left'
+  'ctrl-, N': 'vim-mode-plus:move-pane-to-very-right'
+
+  # From v1.6.0
+  'ctrl-, ctrl-k': 'pane:split-right-and-copy-active-item'
+  'ctrl-, k': 'pane:split-right-and-copy-active-item'
+  'ctrl-, ctrl-o': 'pane:split-down-and-copy-active-item'
+  'ctrl-, o': 'pane:split-down-and-copy-active-item'
+
+  'ctrl-, \'': 'vim-mode-plus:maximize-pane'
+  'ctrl-, \"': 'vim-mode-plus:maximize-pane-without-center'
+  'cmd-enter': 'vim-mode-plus:maximize-pane'
+  # 'cmd-shift-enter': 'vim-mode-plus:maximize-pane-without-center'
+
+  'ctrl-, #': 'vim-mode-plus:equalize-panes'
+
+  'ctrl-, ctrl-j': 'pane:close'
+  'ctrl-, j': 'pane:close'
+  'ctrl-, ctrl-;': 'core:close'
+  'ctrl-, ;': 'core:close'
+  'i y': 'vim-mode-plus:next-tab'
+  'i Y': 'vim-mode-plus:previous-tab'
+
+  'u': 'vim-mode-plus:find'
+  'U': 'vim-mode-plus:find-backwards'
+  'y': 'vim-mode-plus:till'
+  'Y': 'vim-mode-plus:till-backwards'
+  's': 'vim-mode-plus:repeat-find'
+  'w': 'vim-mode-plus:repeat-find-reverse'
+
+  'z': 'vim-mode-plus:search'
+  'Z': 'vim-mode-plus:search-backwards'
+  '2': 'vim-mode-plus:search-current-word'
+  '5': 'vim-mode-plus:search-current-word-backwards'
+  'b': 'vim-mode-plus:repeat-search'
+  'B': 'vim-mode-plus:repeat-search-reverse'
+  'i b': 'vim-mode-plus:search-match-forward'
+  'i B': 'vim-mode-plus:search-match-backward'
+
+  '1': 'vim-mode-plus:move-to-pair'
+
+  '&': 'vim-mode-plus:set-count-1'
+  '[': 'vim-mode-plus:set-count-2'
+  '{': 'vim-mode-plus:set-count-3'
+  '}': 'vim-mode-plus:set-count-4'
+  '(': 'vim-mode-plus:set-count-5'
+  '=': 'vim-mode-plus:set-count-6'
+  '*': 'vim-mode-plus:set-count-7'
+  ')': 'vim-mode-plus:set-count-8'
+  '+': 'vim-mode-plus:set-count-9'
+
+  'numpad1': 'vim-mode-plus:set-count-1'
+  'numpad2': 'vim-mode-plus:set-count-2'
+  'numpad3': 'vim-mode-plus:set-count-3'
+  'numpad4': 'vim-mode-plus:set-count-4'
+  'numpad5': 'vim-mode-plus:set-count-5'
+  'numpad6': 'vim-mode-plus:set-count-6'
+  'numpad7': 'vim-mode-plus:set-count-7'
+  'numpad8': 'vim-mode-plus:set-count-8'
+  'numpad9': 'vim-mode-plus:set-count-9'
+
+  'm': 'vim-mode-plus:mark'
+  '$': 'vim-mode-plus:move-to-mark'
+  "-": 'vim-mode-plus:move-to-mark-line'
+
+  '/': 'vim-mode-plus:move-up-to-edge'
+  '@': 'vim-mode-plus:move-down-to-edge'
+
+  # '/ /': 'vim-mode-plus:move-to-previous-fold-start'
+  # '/ altgraph /': 'vim-mode-plus:move-to-previous-fold-start'
+  # '@ /': 'vim-mode-plus:move-to-next-fold-start'
+  # '@ altgraph /': 'vim-mode-plus:move-to-next-fold-start'
+  # '/ @': 'vim-mode-plus:move-to-previous-fold-end'
+  # '/ altgraph @': 'vim-mode-plus:move-to-previous-fold-end'
+  # '@ @': 'vim-mode-plus:move-to-next-fold-end'
+  # '@ altgraph @': 'vim-mode-plus:move-to-next-fold-end'
+  # '4': 'vim-mode-plus:move-to-previous-fold-start-with-same-indent'
+  # '6': 'vim-mode-plus:move-to-next-fold-start-with-same-indent'
+
+  # 'i o': 'vim-mode-plus:move-to-next-string'
+  # 'i O': 'vim-mode-plus:move-to-previous-string'
+
+  # 'i b': 'vim-mode-plus:move-to-next-number'
+  # 'i B': 'vim-mode-plus:move-to-previous-number'
+
+# macOS only
+'.platform-darwin atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  'ctrl-o': 'vim-mode-plus:transform-string-by-select-list'
+
+'atom-text-editor.vim-mode-plus.has-occurrence:not(.insert-mode)':
+  'tab': 'vim-mode-plus:move-to-next-occurrence'
+  'shift-tab': 'vim-mode-plus:move-to-previous-occurrence'
+
+'atom-text-editor.vim-mode-plus:not(.insert-mode):not(.operator-pending-mode)':
+  "\' y": 'vim-mode-plus:redraw-cursor-line-at-top'
+  "\' enter": 'vim-mode-plus:redraw-cursor-line-at-top-and-move-to-first-character-of-line'
+
+  "\' g": 'vim-mode-plus:redraw-cursor-line-at-upper-middle'
+  "\' space": 'vim-mode-plus:redraw-cursor-line-at-upper-middle-and-move-to-first-character-of-line'
+
+  "\' \'": 'vim-mode-plus:redraw-cursor-line-at-middle'
+  "\' v": 'vim-mode-plus:redraw-cursor-line-at-middle-and-move-to-first-character-of-line'
+
+  "\' x": 'vim-mode-plus:redraw-cursor-line-at-bottom'
+  "\' !": 'vim-mode-plus:redraw-cursor-line-at-bottom-and-move-to-first-character-of-line'
+
+  "\' o": 'vim-mode-plus:scroll-cursor-to-left'
+  "\' .": 'vim-mode-plus:scroll-cursor-to-right'
+
+  "\' j": 'vim-mode-plus:fold-current-row'
+  "\' J": 'vim-mode-plus:fold-current-row-recursively'
+  "\' r": 'vim-mode-plus:unfold-current-row'
+  "\' R": 'vim-mode-plus:unfold-current-row-recursively'
+  "\' a": 'vim-mode-plus:toggle-fold'
+  "\' A": 'vim-mode-plus:toggle-fold-recursively'
+  "\' M": 'vim-mode-plus:fold-all'
+  "\' P": 'vim-mode-plus:unfold-all'
+  "\' m": 'vim-mode-plus:fold-next-indent-level'
+  "\' p": 'vim-mode-plus:unfold-next-indent-level'
+
+'atom-text-editor.vim-mode-plus-input-char-waiting':
+  'enter': 'core:confirm'
+  'escape': 'core:cancel'
+
+  'space': 'vim-mode-plus:set-input-char-space'
+  '%': 'vim-mode-plus:set-input-char-!'
+  '_': 'vim-mode-plus:set-input-char-"'
+  '5': 'vim-mode-plus:set-input-char-#'
+  '3': 'vim-mode-plus:set-input-char-$'
+  '1': 'vim-mode-plus:set-input-char-%'
+  '0': 'vim-mode-plus:set-input-char-&'
+  '-': 'vim-mode-plus:set-input-char-\''
+  '4': 'vim-mode-plus:set-input-char-('
+  '6': 'vim-mode-plus:set-input-char-)'
+  '2': 'vim-mode-plus:set-input-char-*'
+  '`': 'vim-mode-plus:set-input-char-+'
+  'w': 'vim-mode-plus:set-input-char-,'
+  '!': 'vim-mode-plus:set-input-char--'
+  'v': 'vim-mode-plus:set-input-char-.'
+  'z': 'vim-mode-plus:set-input-char-/'
+  ']': 'vim-mode-plus:set-input-char-0'
+  '&': 'vim-mode-plus:set-input-char-1'
+  '[': 'vim-mode-plus:set-input-char-2'
+  '{': 'vim-mode-plus:set-input-char-3'
+  '}': 'vim-mode-plus:set-input-char-4'
+  '(': 'vim-mode-plus:set-input-char-5'
+  '=': 'vim-mode-plus:set-input-char-6'
+  '*': 'vim-mode-plus:set-input-char-7'
+  ')': 'vim-mode-plus:set-input-char-8'
+  '+': 'vim-mode-plus:set-input-char-9'
+  'numpad0': 'vim-mode-plus:set-input-char-0'
+  'numpad1': 'vim-mode-plus:set-input-char-1'
+  'numpad2': 'vim-mode-plus:set-input-char-2'
+  'numpad3': 'vim-mode-plus:set-input-char-3'
+  'numpad4': 'vim-mode-plus:set-input-char-4'
+  'numpad5': 'vim-mode-plus:set-input-char-5'
+  'numpad6': 'vim-mode-plus:set-input-char-6'
+  'numpad7': 'vim-mode-plus:set-input-char-7'
+  'numpad8': 'vim-mode-plus:set-input-char-8'
+  'numpad9': 'vim-mode-plus:set-input-char-9'
+  'S': 'vim-mode-plus:set-input-char-:'
+  's': 'vim-mode-plus:set-input-char-;'
+  'W': 'vim-mode-plus:set-input-char-<'
+  '#': 'vim-mode-plus:set-input-char-='
+  'V': 'vim-mode-plus:set-input-char->'
+  'Z': 'vim-mode-plus:set-input-char-?'
+  '7': 'vim-mode-plus:set-input-char-@'
+  'A': 'vim-mode-plus:set-input-char-A'
+  'X': 'vim-mode-plus:set-input-char-B'
+  'J': 'vim-mode-plus:set-input-char-C'
+  'E': 'vim-mode-plus:set-input-char-D'
+  '>': 'vim-mode-plus:set-input-char-E'
+  'U': 'vim-mode-plus:set-input-char-F'
+  'I': 'vim-mode-plus:set-input-char-G'
+  'D': 'vim-mode-plus:set-input-char-H'
+  'C': 'vim-mode-plus:set-input-char-I'
+  'H': 'vim-mode-plus:set-input-char-J'
+  'T': 'vim-mode-plus:set-input-char-K'
+  'N': 'vim-mode-plus:set-input-char-L'
+  'M': 'vim-mode-plus:set-input-char-M'
+  'B': 'vim-mode-plus:set-input-char-N'
+  'R': 'vim-mode-plus:set-input-char-O'
+  'L': 'vim-mode-plus:set-input-char-P'
+  ':': 'vim-mode-plus:set-input-char-Q'
+  'P': 'vim-mode-plus:set-input-char-R'
+  'O': 'vim-mode-plus:set-input-char-S'
+  'Y': 'vim-mode-plus:set-input-char-T'
+  'G': 'vim-mode-plus:set-input-char-U'
+  'K': 'vim-mode-plus:set-input-char-V'
+  '<': 'vim-mode-plus:set-input-char-W'
+  'Q': 'vim-mode-plus:set-input-char-X'
+  'F': 'vim-mode-plus:set-input-char-Y'
+  '"': 'vim-mode-plus:set-input-char-Z'
+  '/': 'vim-mode-plus:set-input-char-['
+  '\\': 'vim-mode-plus:set-input-char-\\'
+  '@': 'vim-mode-plus:set-input-char-]'
+  '9': 'vim-mode-plus:set-input-char-^'
+  '8': 'vim-mode-plus:set-input-char-_'
+  '$': 'vim-mode-plus:set-input-char-`'
+  'a': 'vim-mode-plus:set-input-char-a'
+  'x': 'vim-mode-plus:set-input-char-b'
+  'j': 'vim-mode-plus:set-input-char-c'
+  'e': 'vim-mode-plus:set-input-char-d'
+  '.': 'vim-mode-plus:set-input-char-e'
+  'u': 'vim-mode-plus:set-input-char-f'
+  'i': 'vim-mode-plus:set-input-char-g'
+  'd': 'vim-mode-plus:set-input-char-h'
+  'c': 'vim-mode-plus:set-input-char-i'
+  'h': 'vim-mode-plus:set-input-char-j'
+  't': 'vim-mode-plus:set-input-char-k'
+  'n': 'vim-mode-plus:set-input-char-l'
+  'm': 'vim-mode-plus:set-input-char-m'
+  'b': 'vim-mode-plus:set-input-char-n'
+  'r': 'vim-mode-plus:set-input-char-o'
+  'l': 'vim-mode-plus:set-input-char-p'
+  ';': 'vim-mode-plus:set-input-char-q'
+  'p': 'vim-mode-plus:set-input-char-r'
+  'o': 'vim-mode-plus:set-input-char-s'
+  'y': 'vim-mode-plus:set-input-char-t'
+  'g': 'vim-mode-plus:set-input-char-u'
+  'k': 'vim-mode-plus:set-input-char-v'
+  ',': 'vim-mode-plus:set-input-char-w'
+  'q': 'vim-mode-plus:set-input-char-x'
+  'f': 'vim-mode-plus:set-input-char-y'
+  '\'': 'vim-mode-plus:set-input-char-z'
+  '?': 'vim-mode-plus:set-input-char-{'
+  '|': 'vim-mode-plus:set-input-char-|'
+  '^': 'vim-mode-plus:set-input-char-}'
+  '~': 'vim-mode-plus:set-input-char-~'
+
+'atom-text-editor.vim-mode-plus.with-count:not(.insert-mode)':
+  ']': 'vim-mode-plus:set-count-0'
+  'numpad0': 'vim-mode-plus:set-count-0'
+  '1': 'vim-mode-plus:move-to-line-by-percent'
+
+'atom-text-editor.vim-mode-plus.has-persistent-selection:not(.insert-mode)':
+  'ctrl-cmd-i': 'vim-mode-plus:select-persistent-selection'
+
+'atom-text-editor.vim-mode-plus.visual-mode.is-narrowed':
+  'cmd-e': 'vim-mode-plus:select-occurrence'
+  'ctrl-cmd-j': 'vim-mode-plus:change-occurrence'
+
+'.platform-darwin atom-text-editor.vim-mode-plus-search':
+  'ctrl-cmd-j': 'vim-mode-plus:change-occurrence-from-search'
+  'cmd-e': 'vim-mode-plus:select-occurrence-from-search'
+  'cmd-r': 'vim-mode-plus:add-occurrence-pattern-from-search'
+  'cmd-enter': 'vim-mode-plus:project-find-from-search'
+
+# normal
+# -------------------------
+'atom-text-editor.vim-mode-plus.normal-mode':
+  'c': 'vim-mode-plus:activate-insert-mode'
+  'a': 'vim-mode-plus:insert-after'
+  'C': 'vim-mode-plus:insert-at-first-character-of-line'
+  'A': 'vim-mode-plus:insert-after-end-of-line'
+  'i c': 'vim-mode-plus:insert-at-last-insert'
+
+  'P': 'vim-mode-plus:activate-replace-mode'
+  'k': 'vim-mode-plus:activate-characterwise-visual-mode'
+  'K': 'vim-mode-plus:activate-linewise-visual-mode'
+  'ctrl-k': 'vim-mode-plus:activate-blockwise-visual-mode'
+
+  'i k': 'vim-mode-plus:select-previous-selection'
+  'i j': 'vim-mode-plus:select-latest-change'
+
+  'g': 'vim-mode-plus:undo'
+  'ctrl-p': 'vim-mode-plus:redo'
+  'R': 'vim-mode-plus:insert-above-with-newline'
+  'r': 'vim-mode-plus:insert-below-with-newline'
+  'q': 'vim-mode-plus:delete-right'
+  'Q': 'vim-mode-plus:delete-left'
+  'o': 'vim-mode-plus:substitute'
+  'v': 'vim-mode-plus:repeat'
+  'ctrl-^': 'symbols-view:go-to-declaration'
+  'ctrl-y': 'symbols-view:return-from-declaration'
+  '_': 'vim-mode-plus:set-register-name'
+  'p': 'vim-mode-plus:replace-character'
+
+  # 'enter': 'vim-mode-plus:add-blank-line-below'
+  # 'shift-enter': 'vim-mode-plus:add-blank-line-above'
+
+# operator-pending
+# -------------------------
+'atom-text-editor.vim-mode-plus.operator-pending-mode':
+  'k': 'vim-mode-plus:operator-modifier-characterwise'
+  'K': 'vim-mode-plus:operator-modifier-linewise'
+  'r': 'vim-mode-plus:operator-modifier-occurrence'
+  'R': 'vim-mode-plus:operator-modifier-subword-occurrence'
+  'C': 'vim-mode-plus:move-to-first-character-of-line'
+  'A': 'vim-mode-plus:move-to-last-character-of-line'
+
+  # Shorthand keymap for two-keystroke text-object
+  'j': 'vim-mode-plus:inner-smart-word' # `y c` for `y i w`
+  'e': 'vim-mode-plus:inner-subword'    # `y d` for `y i d`
+  'J': 'vim-mode-plus:inner-whole-word' # `y C` for `y i W`
+  'l': 'vim-mode-plus:inner-paragraph'  # `y p` for `y i p`
+  'w': 'vim-mode-plus:inner-arguments'  # `y ,` for `y i ,`
+  "'": 'vim-mode-plus:a-fold'           # `y z` for `y a z`
+
+  # In this scope, all operator keys are safely remappable.
+  # e.g. p, d, D, x, u, X, S, ., r
+
+'.platform-win32, atom-text-editor.vim-mode-plus.operator-pending-mode':
+  'ctrl-a': 'vim-mode-plus:inner-entire'
+
+'.platform-linux, atom-text-editor.vim-mode-plus.operator-pending-mode':
+  'ctrl-a': 'vim-mode-plus:inner-entire'
+
+# operator-pending with operator specified
+# -------------------------
+# `c c` to works as change current line.
+'atom-text-editor.vim-mode-plus.operator-pending-mode.change-pending':
+  'j': 'vim-mode-plus:change'
+
+# `d d` to works as delete current line
+'atom-text-editor.vim-mode-plus.operator-pending-mode.delete-pending':
+  'e': 'vim-mode-plus:delete'
+
+# for `g q q`
+'atom-text-editor.vim-mode-plus.operator-pending-mode.reflow-pending':
+  ';': 'vim-mode-plus:reflow'
+
+# for `g w w`
+'atom-text-editor.vim-mode-plus.operator-pending-mode.reflow-with-stay-pending':
+  ',': 'vim-mode-plus:reflow-with-stay'
+
+# operator-pending.has-occurrence
+'atom-text-editor.vim-mode-plus.operator-pending-mode.has-occurrence':
+  'l': 'vim-mode-plus:inner-paragraph'
+  'L': 'vim-mode-plus:inner-paragraph' # in-case SHIFT is not keyuped. when O modifier
+  'p': 'vim-mode-plus:a-persistent-selection'
+  'u': 'vim-mode-plus:a-function'
+  'U': 'vim-mode-plus:a-function' # in-case SHIFT is not keyuped. when O modifier
+  'n': 'vim-mode-plus:inner-current-line'
+  '\'': 'vim-mode-plus:a-fold'
+
+# operator-pending, visual
+# -------------------------
+'atom-text-editor.vim-mode-plus.operator-pending-mode, atom-text-editor.vim-mode-plus.visual-mode':
+  '~': 'vim-mode-plus:toggle-case'
+  'G': 'vim-mode-plus:upper-case'
+  'g': 'vim-mode-plus:lower-case'
+
+  # Text object inner-, a- order
+  'i ,': 'vim-mode-plus:inner-word'
+  'a ,': 'vim-mode-plus:a-word'
+
+  'c <': 'vim-mode-plus:inner-whole-word'
+  'a <': 'vim-mode-plus:a-whole-word'
+
+  # 'i w':  'vim-mode-plus:inner-smart-word'
+  # 'a w':  'vim-mode-plus:a-smart-word'
+
+  # [FIXME?] overridden Vim's sentence text object
+  'c o': 'vim-mode-plus:inner-any-pair'
+  'a o': 'vim-mode-plus:a-any-pair'
+
+  'c _': 'vim-mode-plus:inner-double-quote'
+  'a _': 'vim-mode-plus:a-double-quote'
+
+  "c -": 'vim-mode-plus:inner-single-quote'
+  "a -": 'vim-mode-plus:a-single-quote'
+
+  "c ;": 'vim-mode-plus:inner-any-quote'
+  "a ;": 'vim-mode-plus:a-any-quote'
+
+  'c `': 'vim-mode-plus:inner-back-tick'
+  'a $': 'vim-mode-plus:a-back-tick'
+
+  'c ?': 'vim-mode-plus:inner-curly-bracket'
+  'c altgraph ?': 'vim-mode-plus:inner-curly-bracket'
+  'c ^': 'vim-mode-plus:inner-curly-bracket'
+  'c altgraph ^': 'vim-mode-plus:inner-curly-bracket'
+  'a ?': 'vim-mode-plus:a-curly-bracket'
+  'a altgraph ?': 'vim-mode-plus:a-curly-bracket'
+  'a ^': 'vim-mode-plus:a-curly-bracket'
+  'a altgraph ^': 'vim-mode-plus:a-curly-bracket'
+
+  'c X': 'vim-mode-plus:inner-curly-bracket'
+  'a X': 'vim-mode-plus:a-curly-bracket'
+
+  'c W': 'vim-mode-plus:inner-angle-bracket'
+  'c V': 'vim-mode-plus:inner-angle-bracket'
+  'a W': 'vim-mode-plus:a-angle-bracket'
+  'a V': 'vim-mode-plus:a-angle-bracket'
+
+  # allow-forwarding family
+  # 'i }':  'vim-mode-plus:inner-curly-bracket-allow-forwarding'
+  # 'i altgraph }':  'vim-mode-plus:inner-curly-bracket-allow-forwarding'
+  # 'a }':  'vim-mode-plus:a-curly-bracket-allow-forwarding'
+  # 'a altgraph }':  'vim-mode-plus:a-curly-bracket-allow-forwarding'
+  # 'i >':  'vim-mode-plus:inner-angle-bracket-allow-forwarding'
+  # 'a >':  'vim-mode-plus:a-angle-bracket-allow-forwarding'
+  # 'i ]':  'vim-mode-plus:inner-square-bracket-allow-forwarding'
+  # 'i altgraph ]':  'vim-mode-plus:inner-square-bracket-allow-forwarding'
+  # 'a ]':  'vim-mode-plus:a-square-bracket-allow-forwarding'
+  # 'a altgraph ]':  'vim-mode-plus:a-square-bracket-allow-forwarding'
+  # 'i )':  'vim-mode-plus:inner-parenthesis-allow-forwarding'
+  # 'a )':  'vim-mode-plus:a-parenthesis-allow-forwarding'
+
+  'c y': 'vim-mode-plus:inner-tag'
+  'a y': 'vim-mode-plus:a-tag'
+
+  'c /': 'vim-mode-plus:inner-square-bracket'
+  'c altgraph /': 'vim-mode-plus:inner-square-bracket'
+  'c @': 'vim-mode-plus:inner-square-bracket'
+  'c altgraph @': 'vim-mode-plus:inner-square-bracket'
+  'a /': 'vim-mode-plus:a-square-bracket'
+  'a altgraph /': 'vim-mode-plus:a-square-bracket'
+  'a @': 'vim-mode-plus:a-square-bracket'
+  'a altgraph @': 'vim-mode-plus:a-square-bracket'
+
+  'c 4': 'vim-mode-plus:inner-parenthesis'
+  'c 6': 'vim-mode-plus:inner-parenthesis'
+  'c x': 'vim-mode-plus:inner-parenthesis'
+  'a 4': 'vim-mode-plus:a-parenthesis'
+  'a 6': 'vim-mode-plus:a-parenthesis'
+  'a x': 'vim-mode-plus:a-parenthesis'
+
+  'c l': 'vim-mode-plus:inner-paragraph'
+  'a l': 'vim-mode-plus:a-paragraph'
+
+  'c z': 'vim-mode-plus:inner-comment'
+  'a z': 'vim-mode-plus:a-comment'
+
+  'c c': 'vim-mode-plus:inner-indentation'
+  'a c': 'vim-mode-plus:a-indentation'
+
+  'c \'': 'vim-mode-plus:inner-fold'
+  'a \'': 'vim-mode-plus:a-fold'
+
+  'c u': 'vim-mode-plus:inner-function'
+  'a u': 'vim-mode-plus:a-function'
+
+  'c n': 'vim-mode-plus:inner-current-line'
+  'a n': 'vim-mode-plus:a-current-line'
+
+  'c .': 'vim-mode-plus:inner-entire'
+  'a .': 'vim-mode-plus:a-entire'
+  'cmd-a': 'vim-mode-plus:inner-entire'
+
+  # [NOTE] subject to change in future
+  'c j': 'vim-mode-plus:inner-latest-change'
+  'a j': 'vim-mode-plus:a-latest-change'
+  'i k': 'vim-mode-plus:previous-selection'
+
+  'c p': 'vim-mode-plus:inner-persistent-selection'
+  'a p': 'vim-mode-plus:a-persistent-selection'
+
+  'c k': 'vim-mode-plus:inner-visible-area'
+  'a k': 'vim-mode-plus:a-visible-area'
+
+  'a e': 'vim-mode-plus:a-subword'
+  'c e': 'vim-mode-plus:inner-subword'
+
+  'a w': 'vim-mode-plus:a-arguments'
+  'c w': 'vim-mode-plus:inner-arguments'
+
+# visual
+# -------------------------
+'atom-text-editor.vim-mode-plus.visual-mode':
+  'r': 'vim-mode-plus:reverse-selections'
+  '_': 'vim-mode-plus:set-register-name'
+  'k': 'vim-mode-plus:activate-characterwise-visual-mode'
+  'K': 'vim-mode-plus:activate-linewise-visual-mode'
+  'ctrl-k': 'vim-mode-plus:activate-blockwise-visual-mode'
+  'enter': 'vim-mode-plus:create-persistent-selection'
+  'E': 'vim-mode-plus:delete-line'
+  'J': 'vim-mode-plus:change-line'
+  'F': 'vim-mode-plus:yank-line'
+
+'atom-text-editor.vim-mode-plus.has-persistent-selection.normal-mode, atom-text-editor.vim-mode-plus.visual-mode':
+  'C': 'vim-mode-plus:insert-at-start-of-target'
+  'A': 'vim-mode-plus:insert-at-end-of-target'
+  # 'p': 'vim-mode-plus:swap-with-register'
+  # 'P': 'vim-mode-plus:swap-with-register'
+
+# visual-blockwise
+# -------------------------
+'atom-text-editor.vim-mode-plus.visual-mode.blockwise':
+  'r': 'vim-mode-plus:blockwise-other-end'
+  'R': 'vim-mode-plus:reverse-selections'
+  'E': 'vim-mode-plus:delete-to-last-character-of-line'
+  'J': 'vim-mode-plus:change-to-last-character-of-line'
+
+# Input mini editor e.g. mark, surround, find, till.
+# -------------------------
+'atom-text-editor.vim-mode-plus-input':
+  'ctrl-c': 'core:cancel'
+  'ctrl-/': 'core:cancel'
+
+# Find editor
+"atom-text-editor.vim-mode-plus-input.find":
+  "tab": "vim-mode-plus:find-next-pre-confirmed"
+  "shift-tab": "vim-mode-plus:find-previous-pre-confirmed"
+
+# Search mini editor
+# -------------------------
+'atom-text-editor.vim-mode-plus-search':
+  'ctrl-p ctrl-,': 'vim-mode-plus:search-set-cursor-word'
+  # 'ctrl-v': 'vim-mode-plus:search-activate-literal-mode'
+  'ctrl-j': 'vim-mode-plus:search-cancel'
+  'ctrl-/': 'vim-mode-plus:search-cancel'
+  'shift-tab': 'vim-mode-plus:search-visit-prev'
+  'tab': 'vim-mode-plus:search-visit-next'
+
+# If you want to map normal char to special operation.
+# Use `not(.literal-mode)` selector like below.
+# When you hit `ctrl-v`, it activate literal-mode.
+# So you can input `;`, `[`, `]` as literal char, since following keymap is only
+# effective in `literal-mode` selector is set.
+#
+#   'atom-text-editor.vim-mode-plus-search:not(.literal-mode)':
+#     ';': 'vim-mode-plus:search-confirm'
+#     '[': 'vim-mode-plus:search-visit-prev'
+#     ']': 'vim-mode-plus:search-visit-next'
+#     'space': 'vim-mode-plus:search-insert-wild-pattern'
