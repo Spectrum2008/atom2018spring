@@ -1,0 +1,9 @@
+img {
+width: 10em;
+height: auto;
+}
+
+ .items {
+background-color: blue;
+float: left;
+}
