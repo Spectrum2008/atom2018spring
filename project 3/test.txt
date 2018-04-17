@@ -1,3 +1,4 @@
+# When Node is created at tail it doesn't shows on print.
 N
 F 1
 A
@@ -7,4 +8,17 @@ F 75
 A
 B 22
 Z
+P
 N
+P
+T
+A
+
+#docommand is working before list is created, maybe bust be stopped.
+#theacher
+#how to set up the template class.
+#what does it means remove element and delete get_element
+#   remove means that you have to find the node with the value and remove the Nodes
+#   eliminate is remove all the nodes of the list, that have the same value.
+#what does it means getElment.
+#my tails are not showing on the print.

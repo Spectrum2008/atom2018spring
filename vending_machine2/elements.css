@@ -1,3 +1,11 @@
+#mainBox {
+  background-color: red;
+}
+
+#displayBox {
+  background-color: orange;
+}
+
 img {
 width: 10em;
 height: auto;

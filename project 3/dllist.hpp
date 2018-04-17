@@ -1,16 +1,18 @@
 #include <cstdint>
+#include <cstdint>
 #include <iostream>
 #include <sstream>
 #include <fstream>
 #include <string>
+using std::logic_error;
 using std::cout;
 using std::cin;
 using std::ifstream;
 using std::stringstream;
 using std::endl;
 using std::string;
-//#include "dllist.hpp"
 
+template <class T>
 class DLList {
 
 public:
@@ -31,9 +33,14 @@ constructor, initializes
   adds another node at the front of the list.
   @param is the number to be stored in each node created.
   */
-  void pushFront(int data){//needs the number from doCommand.
+  void pushFront(T data){//needs the number from doCommand.
     Node* n = new Node(data);
     n->next = head;
+    if (tail == nullptr) {
+      tail = n;
+    }else {
+      head->prev = n;
+    }
     head = n;
     size++;
   }
@@ -41,9 +48,14 @@ constructor, initializes
   adds another node at the back of the rist.
   @param the data to be added to the each noded created.
   */
-  void pushBack(int data){
+  void pushBack(T data){
     Node* n = new Node(data);
     n->prev = tail;
+    if (head == nullptr) {
+      head = n;
+    } else {
+      tail->next = n;
+    }
     tail = n;
     size++;
   }
@@ -77,36 +89,47 @@ constructor, initializes
   }
 
 
-  void doCommand(string cmd, int number) {
+  void doCommand(string cmd, T number) {//must create list before doing the rest.
     switch(cmd[0]) {
       case 'A':
-        cout << "VALUE " << headContents() << " AT HEAD" << endl;
-      break;
+        cout << "VALUE " << headContents() << " AT HEAD" << endl;//done.
+        break;
       case 'B':
-        cout << "VALUE " << number << " ADDED TO TAIL" << endl; pushBack(number);
-      break;
+        cout << "VALUE " << number << " ADDED TO TAIL" << endl; pushBack(number);//done.
+        break;
       case 'C'://i think that i have to create object.
         cout << "LIST CREATED" << endl;
-      break;
+        break;
       case 'D':
-        cout << "LIST DELETED" << endl;
-      break;
+        cout << "LIST DELETED" << endl; deleteList();
+        break;
+        case 'E':
+        //cout << eliminateElement() << endl;
+        break;
       case 'F':
-        cout << "VALUE " << number <<" ADDED TO FRONT" << endl; pushFront(number);
-      break;
+        cout << "VALUE " << number <<" ADDED TO FRONT" << endl; pushFront(number);//done.
+        break;
+      case 'G':
+      //  cout << hasElementStr(number) << endl;
+        break;
       case 'N':
-        cout << "LIST SIZE IS " << get_Size() << endl;
-      break;
+        cout << "LIST SIZE IS " << get_Size() << endl;//done.
+        break;
+      case 'P':
+        cout << toString() << endl;//tail added nodes do not show.
+        break;
+        case 'R':
+        cout << removeElement(number) << endl;//
+        break;
       case 'T':
-        cout << "REMOVED HEAD" << endl;
-      break;
+        cout << "REMOVED HEAD" << endl; removeHead();
+        break;
       case 'K':
-        cout << "REMOVED TAIL" << endl;
-      break;
+        cout << "REMOVED TAIL" << endl; removeTail();
+        break;
       case 'Z':
-        cout << "VALUE " << tailContents() << " AT TAIL" << endl;
-      break;
-
+        cout << "VALUE " << tailContents() << " AT TAIL" << endl;//loks done.
+        break;
     }
   }
 
@@ -151,12 +174,16 @@ beguin '#')
   insert a Node between two chossen Nodes
   @param the value for the Node te be inserted.
   */
-  void insert(){
+  void insert(T sortNumber){
+//me use get_element to know where to insert maybe.
+//Node *n = ;
+
+
 
 // //pseudocode staff
 // void List::insert(){
-//   Node *n = new Node(value)
-//   if(head == nullptr || value < head->value){
+   //Node *n = new Node(value)
+   //if(head == nullptr || value < head->value){
 //     pushFront(value)
 //   }else if( value > tail->value){
 //     pushBack(value);
@@ -174,10 +201,40 @@ beguin '#')
 //   }
 // }
     }
-/**/
+
+
+   void deleteList(){///////to be romoved.
+     cout << "to be DEleted in the future" << endl;
+    //list = nullptr;
+
+    }
+
+
   void clear(){
-    cout << "clear()" << endl;
+    while (head != nullptr) {
+      removeHead();
+    }
+    head = nullptr;
+    size = 0;
   }
+
+  void removeHead(){
+    if (size == 0)
+      throw std::logic_error("EMPTY LIST");
+    Node *marker = head;
+    head = head->next;
+    delete marker;
+    size--;
+
+  }
+  void removeTail(){
+    if (size == 0)
+      throw std::logic_error("EMPTY LIST");
+    Node *marker = tail;
+    tail = tail->prev;
+    delete marker;
+    size--;
+}
   /*
 
   */
@@ -191,8 +248,27 @@ get the element on the specified index
 @param the index where the desired value is on the list.
 @throw an error if value wasn't found
 return */
-int get_element(){
-
+bool has_element(T number){
+  //toString(number);
+  Node *marker = head;
+  while (marker != nullptr) {
+    if (marker->data == number) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+/*
+theacher
+the cout doesn't shows, it says no maching function
+*/
+string hasElementStr(T number){
+  if (has_element(number) == true) {
+    cout << "yes" << endl;
+  } else {
+    cout << "No" << endl;
+  }
 }
   /*
   prints the Node list
@@ -203,16 +279,55 @@ int get_element(){
   */
   void removeAll();
   /*
+  theacher
+  remove element is just remove the value in that node?
   */
-  void remeveOne();
+  string removeElement(T value){
+    stringstream ss;
+    if(get_element(value) != true){
+      ss << "VALUE " << value << " NOT FOUND" << endl;
+      return ss.str();
+    } else {
+      Node *n = head;
+      //fixing get element first.
+
+      ss << "VALUE " << value << " ELIMINATED" << endl;
+      return ss.str();
+    }
+
+  }
+  bool get_element(T value){
+    Node *marker = head;
+    while (marker != nullptr) {
+      if (marker->data == value) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
   /*
+  Return a string representation of this Node Doubly list.
+  Display the values (starting from head) of each node
+  in the list, separated by comma.
   */
-  string toString();
+  string toString(){
+    stringstream ss;
+    Node *marker = head;
+    while (marker != nullptr) {
+      ss << marker->data;
+      if (marker->next != nullptr) {
+        ss << ',';
+      }
+      marker = marker->next;
+    }
+    return ss.str();
+  }
 
   private:
     uint32_t size;
     struct Node{
-      int data;
+      T data;
       Node* prev;
       Node* next;
       Node(int newdata){
