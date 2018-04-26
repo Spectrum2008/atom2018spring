@@ -1,18 +1,38 @@
 # When Node is created at tail it doesn't shows on print.
-N
-F 1
-A
-F 35
-A
-F 75
-A
-B 22
-Z
+# create first list
+C
 P
+F 25
+N
+P
+E 25
+N
+B 5
+F 20
+B 5
+F 10
+F 25
+A
+N
+P
+Z
+#R 5
+P
+E 25
+G 1
+G 5
+G 25
 N
 P
 T
-A
+K
+N
+P
+X
+K
+P
+D
+X
 
 #docommand is working before list is created, maybe bust be stopped.
 #theacher
@@ -22,3 +42,5 @@ A
 #   eliminate is remove all the nodes of the list, that have the same value.
 #what does it means getElment.
 #my tails are not showing on the print.
+
+#so far has being working

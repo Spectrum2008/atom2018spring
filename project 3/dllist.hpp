@@ -1,9 +1,16 @@
-#include <cstdint>
+//####################################################################//
+//###########PROJECT 3 DOUBLY LINKED LIST############################//
+//##################################################################//
+//Honorio Benitez,
+//April 25
+
 #include <cstdint>
 #include <iostream>
 #include <sstream>
 #include <fstream>
 #include <string>
+#include <stdexcept>
+using std::out_of_range;
 using std::logic_error;
 using std::cout;
 using std::cin;
@@ -12,26 +19,29 @@ using std::stringstream;
 using std::endl;
 using std::string;
 
+/*
+#implement a template doubly linked list with full functionality.
+*/
 template <class T>
 class DLList {
 
 public:
   /*
-constructor, initializes
+#constructor, initializes head and tail to nullptr, size to 0.
   */
   DLList()
   : head(nullptr), tail(nullptr), size(0)
   {}
   /*
-  deconstructor, destroys all the nodes by calling clear();
+#deconstructor, destroys all the nodes by calling clear();
   */
   ~DLList(){
-    clear();//
+    clear();//list to nullptr.
   }
 
   /*
-  adds another node at the front of the list.
-  @param is the number to be stored in each node created.
+#adds another node at the front of the list.
+#@param is the number to be stored in the new node.
   */
   void pushFront(T data){//needs the number from doCommand.
     Node* n = new Node(data);
@@ -45,8 +55,8 @@ constructor, initializes
     size++;
   }
   /*
-  adds another node at the back of the rist.
-  @param the data to be added to the each noded created.
+#adds another node at the back of the rist.
+#@param the data to be added to the each noded created.
   */
   void pushBack(T data){
     Node* n = new Node(data);
@@ -60,258 +70,168 @@ constructor, initializes
     size++;
   }
   /*
-  returns the numbers of Nodes
-  @return variable size.
+#returns the numbers of Nodes
+#@return variable size.
   */
   uint32_t get_Size(){
     return size;
   }
   /*
-  it cheks if list is empty or not
-  @return a bool, true if it is empty, Or false if it is not empty
+#it cheks if list is empty or not
+#@return a bool, true if it is empty, Or false if it is not empty
   */
   bool empty(){
     return(size == 0);
   }
   /*get head contents
-  return the value stored in the curent head Node
-  @return an integer, the value in the head Nodes
+#return the value stored in the curent head Node
+#@return an integer, the value in the head Nodes
   */
-  int headContents(){
+  uint32_t headContents() throw(logic_error){
+    if (head == nullptr && tail == nullptr) {
+      throw logic_error("LIST EMPTY");
+    }
     return head->data;
   }
-  /*get tail contents
-  return the value stored in the current head Nodes
-  @return the value stored in the current tail Nodes
+ /*get tail contents
+#return the value stored in the current head Nodes
+#@return the value stored in the current tail Nodes
   */
-  int tailContents(){
+  uint32_t tailContents() throw(logic_error){
+    if (head == nullptr) {
+      throw logic_error("LIST EMPTY");
+    }
     return tail->data;
   }
 
-
-  void doCommand(string cmd, T number) {//must create list before doing the rest.
-    switch(cmd[0]) {
-      case 'A':
-        cout << "VALUE " << headContents() << " AT HEAD" << endl;//done.
-        break;
-      case 'B':
-        cout << "VALUE " << number << " ADDED TO TAIL" << endl; pushBack(number);//done.
-        break;
-      case 'C'://i think that i have to create object.
-        cout << "LIST CREATED" << endl;
-        break;
-      case 'D':
-        cout << "LIST DELETED" << endl; deleteList();
-        break;
-        case 'E':
-        //cout << eliminateElement() << endl;
-        break;
-      case 'F':
-        cout << "VALUE " << number <<" ADDED TO FRONT" << endl; pushFront(number);//done.
-        break;
-      case 'G':
-      //  cout << hasElementStr(number) << endl;
-        break;
-      case 'N':
-        cout << "LIST SIZE IS " << get_Size() << endl;//done.
-        break;
-      case 'P':
-        cout << toString() << endl;//tail added nodes do not show.
-        break;
-        case 'R':
-        cout << removeElement(number) << endl;//
-        break;
-      case 'T':
-        cout << "REMOVED HEAD" << endl; removeHead();
-        break;
-      case 'K':
-        cout << "REMOVED TAIL" << endl; removeTail();
-        break;
-      case 'Z':
-        cout << "VALUE " << tailContents() << " AT TAIL" << endl;//loks done.
-        break;
-    }
-  }
-
-
   /*
-  Load the contents of a file into the list.
-  Assumes that the file has one key value pair
-  per line separated by 'space', with no extra spaces.
-
-  Note: ignores empty lines and comment lines (lines that
-beguin '#')
-
-@param filename the name of the file to Load
-@return true if the file is sucessfully processed, else false
+#insert a Node between two chossen Nodes
+#@param the value for the Node te be inserted.
   */
-  bool loadFile(string filename){
-    string arr;
-    string first;
-    string second;
-
-    ifstream file(filename.c_str());//filename becomes file.
-
-    if(file.is_open()){
-      while(getline(file, arr)){//grabs file- store in arr.
-        if(!arr.empty() && arr[0] != '#'){
-          stringstream myStream(arr);//arr becomes file-like.
-          getline(myStream, first, ' ');//grabs from arr and stores in first.
-          getline(myStream, second);//second pieze remains to store is second.
-          stringstream myToInt(second);
-          int number = 0;
-          myToInt >> number;
-          doCommand(first, number);
-          //addOption(first, second);
-        }
-      }
-      file.close();
-      return true;
-    }
-    return false;
-  }
-  /*
-  insert a Node between two chossen Nodes
-  @param the value for the Node te be inserted.
-  */
-  void insert(T sortNumber){
-//me use get_element to know where to insert maybe.
-//Node *n = ;
-
-
-
-// //pseudocode staff
-// void List::insert(){
-   //Node *n = new Node(value)
-   //if(head == nullptr || value < head->value){
-//     pushFront(value)
-//   }else if( value > tail->value){
-//     pushBack(value);
-//   }
-//   else{
-//     Node* marker = head;
-//     while(value > marker->value){
-//       marker = marker->next;
-//     }
-//     Node* n = new Node(value)
-//     n->next = marker;
-//     n->prev = marker->prev;
-//     markers->prev = n;
-//     n->prev->next = n;
-//   }
-// }
-    }
-
-
-   void deleteList(){///////to be romoved.
-     cout << "to be DEleted in the future" << endl;
-    //list = nullptr;
-
-    }
-
-
+  void insert(T value){
+   if(head == nullptr || value < head->data){
+     pushFront(value);
+   }else if( value > tail->data){
+     pushBack(value);
+   }
+   else{
+     Node* marker = head;
+     while(value > marker->data){
+       marker = marker->next;
+     }
+     Node* n = new Node(value);
+     n->next = marker;
+     n->prev = marker->prev;
+     marker->prev = n;
+     n->prev->next = n;
+     size++;
+   }
+}
+/*
+#Dellete all Nodes in the Nodelist
+#it uses removeHead() to remove them all.
+*/
   void clear(){
-    while (head != nullptr) {
+    Node* marker = head;
+    while (marker != nullptr) {
+      marker = head->next;
       removeHead();
     }
-    head = nullptr;
-    size = 0;
   }
-
-  void removeHead(){
-    if (size == 0)
+/*
+#remove the head element.
+#@throw a logic error if list is empty.
+*/
+  void removeHead()throw(logic_error){
+    if (head == nullptr && tail == nullptr)
       throw std::logic_error("EMPTY LIST");
     Node *marker = head;
     head = head->next;
     delete marker;
     size--;
-
   }
-  void removeTail(){
-    if (size == 0)
+/*
+#remove the tail element.
+#@throw logic error if list is empty.
+*/
+  void removeTail()throw(logic_error){
+    if (head == nullptr && tail == nullptr)
       throw std::logic_error("EMPTY LIST");
     Node *marker = tail;
     tail = tail->prev;
     delete marker;
     size--;
-}
-  /*
-
-  */
-  void find();
-  /*
-  deletes a choosen node between two nodes//[[[
-  */
-  void deleteNode(int delData);
+ }
 /*
-get the element on the specified index
-@param the index where the desired value is on the list.
-@throw an error if value wasn't found
-return */
-bool has_element(T number){
-  //toString(number);
-  Node *marker = head;
-  while (marker != nullptr) {
-    if (marker->data == number) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-}
-/*
-theacher
-the cout doesn't shows, it says no maching function
+#get the element on the specified index
+#@param the value to find.
+#@return on sucess VALUE x FOUND on failure VALUE x NOT FOUND
 */
-string hasElementStr(T number){
-  if (has_element(number) == true) {
-    cout << "yes" << endl;
-  } else {
-    cout << "No" << endl;
+  bool getElment(T value){
+    Node *marker = head;
+    while (marker != nullptr && marker->data != value) {
+      marker = marker->next;
+    }
+  //marker is moving throw the pointers, and there is an extra
+  //pointer because of the desing of the Nodes, there is a NOT
+  //used pointer at the end.
+    if (marker != nullptr && marker->data == value) {
+      return true;
+    }
+    return false;
   }
+  /*
+#Delete all nodes with the specific value.
+#@param the value that is going to be removed entirely from the Nodelist
+#the same number should not apear again. (remove all instances of the same
+#value.)
+  */
+  bool removeAll(T value){
+    if (getElment(value)) {
+    while(getElment(value)){
+      removeOne(value);
+    }
+    return true;
+  }
+  return false;
 }
   /*
-  prints the Node list
+#remove only the first node with the value specified.
+#@param the value that is going to be found and removed.
   */
-  void printList();
-  /*
-
-  */
-  void removeAll();
-  /*
-  theacher
-  remove element is just remove the value in that node?
-  */
-  string removeElement(T value){
-    stringstream ss;
-    if(get_element(value) != true){
-      ss << "VALUE " << value << " NOT FOUND" << endl;
-      return ss.str();
-    } else {
-      Node *n = head;
-      //fixing get element first.
-
-      ss << "VALUE " << value << " ELIMINATED" << endl;
-      return ss.str();
+  bool removeOne(T value){
+    if (head == nullptr) {
+      return false;
+    } else if (head->data == value) {
+      removeHead();
+      return true;
+    } else if(tail->data == value) {
+      removeTail();
+      return true;
     }
-
-  }
-  bool get_element(T value){
     Node *marker = head;
-    while (marker != nullptr) {
-      if (marker->data == value) {
-        return true;
-      } else {
-        return false;
-      }
+    while(marker != nullptr && marker->data != value){
+      marker = marker->next;
+    }
+    if(marker == nullptr){
+      return false;
+    } else {
+      marker->prev->next = marker->next;
+      marker->next->prev = marker->prev;
+      delete marker;
+      size--;
+      return true;
     }
   }
   /*
-  Return a string representation of this Node Doubly list.
-  Display the values (starting from head) of each node
-  in the list, separated by comma.
+#Return a string representation of this Node Doubly list.
+#Display the values (starting from head) of each node
+#in the list, separated by comma.
   */
   string toString(){
+    if (head == nullptr) {
+      return("LIST EMPTY");
+    }
     stringstream ss;
     Node *marker = head;
     while (marker != nullptr) {
@@ -330,7 +250,7 @@ string hasElementStr(T number){
       T data;
       Node* prev;
       Node* next;
-      Node(int newdata){
+      Node(uint32_t newdata){
         prev = nullptr;
         next = nullptr;
         data = newdata;
