@@ -1,6 +1,19 @@
+#include <cstdint>
+#include <cstdint>
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <string>
+using std::logic_error;
+using std::cout;
+using std::cin;
+using std::ifstream;
+using std::stringstream;
+using std::endl;
+using std::string;
 
-#include "List.h"
-
+template <class T>
+class DLList {
 
 List::List()
 : head(nullptr), curr(nullptr), temp(nullptr)

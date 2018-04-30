@@ -10,34 +10,68 @@
 </head>
 
 <body>
-  <div id="mainBox">
-    <div id="displayBox">
-      <div id="displayDivs1" class="items">
+  <section id="vending_machine">
+  <div id="itemsBox">
+    <div id="displayItemsBox">
+      <div id="displayItemsDivs1" class="items">
         <img src="eat\Baken.jpg" alt="">
-        <p id="p">Baken</p>
+        <p class="name">Baken</p>
       </div>
-      <div id="displayDivs2" class="items">
+      <div id="displayItemsDivs2" class="items">
         <img src="eat\cheetos.png" alt="">
-        <p>cheetos</p>
+        <p class="name">cheetos</p>
       </div>
-      <div id="displayDivs3" class="items">
+      <div id="displayItemsDivs3" class="items">
         <img src="eat/doritos.jpg" alt="">
-        <p>doritos</p>
+        <p class="name">doritos</p>
       </div>
-      <div id="displayDivs4" class="items">
+      <div id="displayItemsDivs4" class="items">
         <img src="eat/fritos.jpg" alt="">
-        <p>fritos</p>
+        <p class="name">fritos</p>
       </div>
-      <div id="displayDivs5" class="items">
+      <div id="displayItemsDivs5" class="items">
         <img src="eat/lays.jpg" alt="">
-        <p>lays</p>
+        <p class="name">lays</p>
       </div>
-    </div>
-    <div id="displayotherstuff" class="items">
-      <h1>here is your order</h1>
-      <p id="order"></p>
     </div>
   </div>
+
+  <div id="coinsBox">
+    <div id="displayCoinsBox">
+      <div id="displayCoinsDivs1" class="coins">
+        <img src="coins\penny.jpg" alt="">
+        <p class="name">penny</p>
+      </div>
+      <div id="displayCoinsDivs2" class="coins">
+        <img src="coins/five.png" alt="">
+        <p class="name">five</p>
+      </div>
+      <div id="displayCoinsDivs3" class="coins">
+        <img src="coins/dime.jpg" alt="">
+        <p class="name">dime</p>
+      </div>
+      <div id="displayCoinsDivs4" class="coins">
+        <img src="coins/quarter.png" alt="">
+        <p class="name">quarter</p>
+      </div>
+      <div id="displayCoinsDivs5" class="coins">
+        <img src="coins/dollar.jpeg" alt="">
+        <p class="name">dollar</p>
+      </div>
+    </div>
+  </div>
+
+    <div id="displayotherstuff">
+      <h1 id="orderTitle">here is your order</h1>
+      <p id="order"></p>
+    </div>
+    <div id="finish">
+    <h1>finish and pay <br /> click me when finish</h1>
+  <p id="toBuyItems"></p>
+  <p id="owe"></p>
+  </div>
+  <div></div>
+</section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
   <script src="elements.js"></script>

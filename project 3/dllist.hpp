@@ -20,30 +20,30 @@ using std::endl;
 using std::string;
 
 /*
-#implement a template doubly linked list with full functionality.
+*implement a template doubly linked list with full functionality.
 */
 template <class T>
 class DLList {
 
 public:
-  /*
-#constructor, initializes head and tail to nullptr, size to 0.
-  */
+/*
+*constructor, initializes head and tail to nullptr, size to 0.
+*/
   DLList()
   : head(nullptr), tail(nullptr), size(0)
   {}
-  /*
-#deconstructor, destroys all the nodes by calling clear();
-  */
+/*
+*deconstructor, destroys all the nodes by calling clear();
+*/
   ~DLList(){
-    clear();//list to nullptr.
+    clear();
   }
 
-  /*
-#adds another node at the front of the list.
-#@param is the number to be stored in the new node.
-  */
-  void pushFront(T data){//needs the number from doCommand.
+/*
+*adds another node at the front of the list.
+*@param is the number to be stored in the new node.
+*/
+  void pushFront(T data){
     Node* n = new Node(data);
     n->next = head;
     if (tail == nullptr) {
@@ -54,10 +54,10 @@ public:
     head = n;
     size++;
   }
-  /*
-#adds another node at the back of the rist.
-#@param the data to be added to the each noded created.
-  */
+/*
+*adds another node at the back of the rist.
+*@param the data to be added to the each noded created.
+*/
   void pushBack(T data){
     Node* n = new Node(data);
     n->prev = tail;
@@ -69,34 +69,34 @@ public:
     tail = n;
     size++;
   }
-  /*
-#returns the numbers of Nodes
-#@return variable size.
-  */
+/*
+*returns the numbers of Nodes
+*@return variable size.
+*/
   uint32_t get_Size(){
     return size;
   }
-  /*
-#it cheks if list is empty or not
-#@return a bool, true if it is empty, Or false if it is not empty
-  */
+/*
+*it cheks if list is empty or not
+*@return a bool, true if it is empty, Or false if it is not empty
+*/
   bool empty(){
     return(size == 0);
   }
-  /*get head contents
-#return the value stored in the curent head Node
-#@return an integer, the value in the head Nodes
-  */
+/*get head contents
+*return the value stored in the curent head Node
+*@return an integer, the value in the head Nodes
+*/
   uint32_t headContents() throw(logic_error){
     if (head == nullptr && tail == nullptr) {
       throw logic_error("LIST EMPTY");
     }
     return head->data;
   }
- /*get tail contents
-#return the value stored in the current head Nodes
-#@return the value stored in the current tail Nodes
-  */
+/*get tail contents
+*return the value stored in the current head Nodes
+*@return the value stored in the current tail Nodes
+*/
   uint32_t tailContents() throw(logic_error){
     if (head == nullptr) {
       throw logic_error("LIST EMPTY");
@@ -104,10 +104,10 @@ public:
     return tail->data;
   }
 
-  /*
-#insert a Node between two chossen Nodes
-#@param the value for the Node te be inserted.
-  */
+/*
+*insert a Node between two chossen Nodes
+*@param the value for the Node te be inserted.
+*/
   void insert(T value){
    if(head == nullptr || value < head->data){
      pushFront(value);
@@ -128,8 +128,8 @@ public:
    }
 }
 /*
-#Dellete all Nodes in the Nodelist
-#it uses removeHead() to remove them all.
+*Dellete all Nodes in the Nodelist
+*it uses removeHead() to remove them all.
 */
   void clear(){
     Node* marker = head;
@@ -139,8 +139,8 @@ public:
     }
   }
 /*
-#remove the head element.
-#@throw a logic error if list is empty.
+*remove the head element.
+*@throw a logic error if list is empty.
 */
   void removeHead()throw(logic_error){
     if (head == nullptr && tail == nullptr)
@@ -151,21 +151,23 @@ public:
     size--;
   }
 /*
-#remove the tail element.
-#@throw logic error if list is empty.
+*remove the tail element.
+*@throw logic error if list is empty.
 */
   void removeTail()throw(logic_error){
-    if (head == nullptr && tail == nullptr)
+    if (head == nullptr)
       throw std::logic_error("EMPTY LIST");
     Node *marker = tail;
     tail = tail->prev;
     delete marker;
+    tail->next = nullptr;
     size--;
  }
 /*
-#get the element on the specified index
-#@param the value to find.
-#@return on sucess VALUE x FOUND on failure VALUE x NOT FOUND
+*get the element on the specified index
+*@param the value to find.
+*@return on sucess VALUE x FOUND on failure VALUE x NOT FOUND
+*will display messages on doCommand.
 */
   bool getElment(T value){
     Node *marker = head;
@@ -180,12 +182,13 @@ public:
     }
     return false;
   }
-  /*
-#Delete all nodes with the specific value.
-#@param the value that is going to be removed entirely from the Nodelist
-#the same number should not apear again. (remove all instances of the same
-#value.)
-  */
+/*
+*Delete all nodes with the specific value.
+*@param the value that is going to be removed entirely from the Nodelist
+*the same number should not apear again. (remove all instances of the same
+*value.)
+*@return true if all instances of that value have been removed.
+*/
   bool removeAll(T value){
     if (getElment(value)) {
     while(getElment(value)){
@@ -195,10 +198,11 @@ public:
   }
   return false;
 }
-  /*
-#remove only the first node with the value specified.
-#@param the value that is going to be found and removed.
-  */
+/*
+*remove only the first node with the value specified.
+*@param the value that is going to be found and removed.
+*@return true if an item has been removed else false.
+*/
   bool removeOne(T value){
     if (head == nullptr) {
       return false;
@@ -223,11 +227,11 @@ public:
       return true;
     }
   }
-  /*
-#Return a string representation of this Node Doubly list.
-#Display the values (starting from head) of each node
-#in the list, separated by comma.
-  */
+/*
+*Return a string representation of this Node Doubly list.
+*Display the values (starting from head) of each node
+*in the list, separated by comma.
+*/
   string toString(){
     if (head == nullptr) {
       return("LIST EMPTY");

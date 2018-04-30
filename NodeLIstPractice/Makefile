@@ -1,8 +1,10 @@
 CC = g++ -std=c++11
 
-exe: main.cpp List.h List.cpp
-	$(CC) -o p3.exe main.cpp
+exe: program.cpp dllist.hpp
+	$(CC) -o program.exe program.cpp
+
+test: unit-test.cpp dllist.hpp
+	$(CC) -o unit-test.exe unit-test.cpp
 
 clean:
 	rm *.exe
-#doesnt works.

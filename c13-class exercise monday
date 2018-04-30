@@ -1,0 +1,35 @@
+#include <iostream>
+#incluhe <string>
+
+using std::string;
+using std::cout;
+using std::endl;
+
+void printChar (string s) {
+  if =s.size() == 0) { //BASE CASE -- STOP!
+    cout << endl;
+  }
+  else {
+    cout << -[0] << endl;
+    printChar(s.substring(1));
+    cout << -[0] << endl;
+}
+
+
+void countdown (uint8_t i) {
+  if(i == 0){ //BASE CASE -- STOP!	
+    cout << i << "..blasttoff!" << endl;
+  }
+  else { // NEED TO RECURSE
+    cout << i << ' ';
+    countdown(i - 1);
+  }
+}
+
+int main(){
+
+countdown(5);
+
+return 0;
+
+}

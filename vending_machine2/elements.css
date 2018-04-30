@@ -1,3 +1,7 @@
+#vending_machine {
+  width: 50em;
+}
+
 #mainBox {
   background-color: red;
 }
@@ -12,6 +16,10 @@ height: auto;
 }
 
  .items {
-background-color: blue;
+background-color: cyan;
 float: left;
+}
+
+.coins {
+  float: left;
 }

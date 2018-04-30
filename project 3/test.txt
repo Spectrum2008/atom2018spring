@@ -6,6 +6,8 @@ F 25
 N
 P
 E 25
+P
+E 25
 N
 B 5
 F 20
@@ -16,23 +18,44 @@ A
 N
 P
 Z
-#R 5
+G 0
 P
+# as i can see my removeOne is not working
+R 5
+#
+P
+P
+#P
 E 25
+G 0
+X
 G 1
 G 5
 G 25
 N
 P
-T
-K
+#T
+P
 N
 P
 X
-K
+#K
 P
 D
 X
+C
+F 33
+B 55
+P
+K
+P
+T
+P
+B 33
+F 44
+I 99
+P
+K
 
 #docommand is working before list is created, maybe bust be stopped.
 #theacher
