@@ -14,12 +14,23 @@ var money = [
   {name: 'dollar', price: 100}
 ];
 
+var quarters = 0;
+var dimes = 0;
+var nikels = 0;
+var pennys = 0;
+
 var totalQuantity = [];
  totalQuantity[0] = buyingInfo[0].quantity;
  totalQuantity[1] = buyingInfo[1].quantity;
  totalQuantity[2] = buyingInfo[2].quantity;
  totalQuantity[3] = buyingInfo[3].quantity;
  totalQuantity[4] = buyingInfo[4].quantity;
+
+ var coinPicture = [];
+ coinPicture[0] = "coins/quarter.png";
+ coinPicture[1] = "coins/dime.jpg";
+ coinPicture[2] = "coins/five.png";
+ coinPicture[3] = "coins/penny.jpg";
 
 var pname = document.getElementsByClassName('name');
 for(var i = 0; i < 5; i++){
@@ -73,27 +84,62 @@ if(onlyOneTime == true){
     }
   });
 }
+
+$('#coinsBox').hide();
+$('button').on('click', function() {
+  $('#coinsBox').show();
+});
+
 //the coins problems.....
 var pay = 0;
-
+var change = 0;
 $('.coins').on('click', function() {
   var index = $(this).index();
   pay += money[index].price;
-  console.log(pay);
-  if ($('#owe').is(':empty')) {
-    console.log("owe is empty");
-  }
+
   var newSum = $('#sum').text();
 
-  console.log(pay/100);
-  console.log(sum);
-  var paytrue = ((pay/100) >= sum);
+  var paytrue = ((pay/100) > sum);
   if (paytrue) {
-    var change = (pay - (sum * 100));
+     change = (pay - (sum * 100));
     var changeStr = "Your change is: " + (change / 100);
     $('#owe').html(changeStr);
+    $('#coinsBox').hide();
+    $('#pay').hide();
   }
 
-  if (true) {}
+  if (change > 0) {
+quarters = change/25;
+dimes = (change%25)/10;
+nikels = ((change%25)%10)/5;
+pennys = (((change%25)%10)%5);
+
+for (var i = 0; i < Math.floor(quarters); i++) {
+  showCoinsChange(0);
+}
+for (var i = 0; i < Math.floor(dimes); i++) {
+  showCoinsChange(1);
+}
+for (var i = 0; i < Math.floor(nikels); i++) {
+  showCoinsChange(2);
+}
+for (var i = 0; i < Math.floor(pennys); i++) {
+  showCoinsChange(3);
+}
+  }
 });
 
+var showCoinsChange = function(coin) {
+
+  var div = document.getElementById('change');
+  var quardiv = document.createElement('div');
+  var imgquarters = document.createElement('img');
+  var q = document.createAttribute('src');
+  q.value = coinPicture[coin];
+  imgquarters.setAttributeNode(q);
+  quardiv.appendChild(imgquarters);
+  div.appendChild(quardiv);
+  var coinsClass = document.createAttribute('class');
+  coinsClass.value = "changeCoins";
+  imgquarters.setAttributeNode(coinsClass);
+}

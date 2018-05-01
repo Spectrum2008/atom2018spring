@@ -31,3 +31,16 @@ float: left;
 #finish {
 	float: right;
 }
+
+.changeCoins {
+  float: left;
+  width: 9em;
+}
+
+#change {
+  height: 4em;
+}
+
+#vending_machine {
+  height: 33em;
+}
