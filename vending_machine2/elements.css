@@ -23,3 +23,11 @@ float: left;
 .coins {
   float: left;
 }
+
+#displayotherstuff {
+	float: left;
+}
+
+#finish {
+	float: right;
+}

@@ -75,18 +75,25 @@ if(onlyOneTime == true){
 }
 //the coins problems.....
 var pay = 0;
+
 $('.coins').on('click', function() {
   var index = $(this).index();
   pay += money[index].price;
   console.log(pay);
   if ($('#owe').is(':empty')) {
-    console.log("hello");
+    console.log("owe is empty");
   }
   var newSum = $('#sum').text();
 
   console.log(pay/100);
   console.log(sum);
-  if ((pay/100) >= sum) {
-    console.log("change!!!!!!!!!!!!!");
+  var paytrue = ((pay/100) >= sum);
+  if (paytrue) {
+    var change = (pay - (sum * 100));
+    var changeStr = "Your change is: " + (change / 100);
+    $('#owe').html(changeStr);
   }
+
+  if (true) {}
 });
+
