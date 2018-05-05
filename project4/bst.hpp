@@ -1,5 +1,12 @@
 #include <iostream>
 #include <cstdlib>
+#include <string>
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <string>
+#include <stdexcept>
+
 
 using namespace std;
 
@@ -11,10 +18,10 @@ private:
 
   struct Node
   {
-    T data;
+    string data;
     Node* leftChild;
     Node* rightChild;
-    Node(int newData)
+    Node(T newData)
     : data(newData), leftChild(nullptr), rightChild(nullptr)
     {}
   }* root;
