@@ -55,7 +55,7 @@ public:
     size++;
   }
 /*
-*adds another node at the back of the rist.
+*adds another node at the back of the list.
 *@param the data to be added to the each noded created.
 */
   void pushBack(T data){
@@ -103,28 +103,43 @@ public:
     }
     return tail->data;
   }
-
 /*
-*insert a Node between two chossen Nodes
+*insert a Node (sorted), all nodes in order small to big.
 *@param the value for the Node te be inserted.
 */
   void insert(T value){
-   if(head == nullptr || value < head->data){
+   if(head == nullptr){
+     pushBack(value);
+   }else if(head->data == tail->data){
+     if(head->data > value){
      pushFront(value);
-   }else if( value > tail->data){
+   }else{
      pushBack(value);
    }
-   else{
-     Node* marker = head;
-     while(value > marker->data){
-       marker = marker->next;
+   }else if(value > tail->data){
+     pushBack(value);
+   }else if(value < head->data) {
+     pushFront(value);
+   }else {
+     Node* marker = tail;
+     while(marker->prev->data > value){
+       marker = marker->prev;
      }
-     Node* n = new Node(value);
-     n->next = marker;
-     n->prev = marker->prev;
-     marker->prev = n;
-     n->prev->next = n;
-     size++;
+     if(marker->data == value) {
+       Node* n = new Node(value);//NOT WORKING NEEDS CHECK!!!!.....
+       n->prev = marker->prev;
+       n->next = marker;
+       marker->prev = n;
+       marker->prev->next = n;
+       size++;
+     }else{
+       Node* n = new Node(value);
+       n->prev = marker->prev;
+       n->next = marker;
+       marker->prev->next = n;
+       marker->prev = n;
+       size++;
+     }
    }
 }
 /*
@@ -141,35 +156,57 @@ public:
 /*
 *remove the head element.
 *@throw a logic error if list is empty.
+*@return true on sucess false if failure.
 */
-  void removeHead()throw(logic_error){
-    if (head == nullptr && tail == nullptr)
-      throw std::logic_error("EMPTY LIST");
-    Node *marker = head;
-    head = head->next;
-    delete marker;
-    size--;
+  bool removeHead()throw(logic_error){
+    if (head == nullptr){
+      return false;
+    }else if(head == tail){
+        delete head;
+        head = nullptr;
+        tail = nullptr;
+        size--;
+        return true;
+    }else{
+      Node *marker = head;
+      head = head->next;
+      delete marker;
+      head->prev = nullptr;
+      size--;
+      return true;
+    }
   }
 /*
 *remove the tail element.
 *@throw logic error if list is empty.
+*@return true if sucess, false if failure.
 */
-  void removeTail()throw(logic_error){
-    if (head == nullptr)
-      throw std::logic_error("EMPTY LIST");
+  bool removeTail()throw(logic_error){
+    if (head == nullptr){
+      return false;
+    }else if(head == tail){
+      delete head;
+      head = nullptr;
+      tail = nullptr;
+      size--;
+      return true;
+    }else{
     Node *marker = tail;
     tail = tail->prev;
     delete marker;
     tail->next = nullptr;
     size--;
+    return true;
+  }
  }
 /*
 *get the element on the specified index
+*just say yes exist or no it doesn't
 *@param the value to find.
 *@return on sucess VALUE x FOUND on failure VALUE x NOT FOUND
 *will display messages on doCommand.
 */
-  bool getElment(T value){
+  bool getElement(T value){
     Node *marker = head;
     while (marker != nullptr && marker->data != value) {
       marker = marker->next;
@@ -190,13 +227,17 @@ public:
 *@return true if all instances of that value have been removed.
 */
   bool removeAll(T value){
-    if (getElment(value)) {
-    while(getElment(value)){
-      removeOne(value);
+    bool founded;
+    Node* marker = new Node(value);
+    marker = head;
+    while (marker != nullptr) {
+      if(marker->data == value){
+        removeOne(value);
+        founded = true;
+      }
+      marker = marker->next;
     }
-    return true;
-  }
-  return false;
+  return founded;
 }
 /*
 *remove only the first node with the value specified.
@@ -217,15 +258,14 @@ public:
     while(marker != nullptr && marker->data != value){
       marker = marker->next;
     }
-    if(marker == nullptr){
-      return false;
-    } else {
+    if(getElement(value)){
       marker->prev->next = marker->next;
       marker->next->prev = marker->prev;
       delete marker;
       size--;
       return true;
     }
+    return false;
   }
 /*
 *Return a string representation of this Node Doubly list.

@@ -17,13 +17,18 @@ a number that will be used as the command
 */
   string doCommand(string cmd, uint32_t number, DLList<uint32_t> *& list) {
 
-if (list == nullptr && cmd != "C") {
+if (list == nullptr && cmd[0] != 'C') {
   return("MUST CREATE LIST INSTANCE\n");
 }
     switch(cmd[0]) {
       case 'A':
-        cout << "VALUE " << list->headContents() << " AT HEAD" << endl;//done.
-        break;
+	      try{
+            cout << "VALUE " << list->headContents() << " AT HEAD" << endl;//done.
+	           } catch (logic_error e)
+	            {
+	               cout << e.what() << endl;
+	              }
+	     break;
       case 'B':
         cout << "VALUE " << number << " ADDED TO TAIL" << endl; list->pushBack(number);//done.
         break;
@@ -54,7 +59,7 @@ if (list == nullptr && cmd != "C") {
         cout << "VALUE " << number <<" ADDED TO FRONT" << endl; list->pushFront(number);//done.
         break;
       case 'G':
-        if (list->getElment(number)) {
+        if (list->getElement(number)) {
           cout << "VALUE " << number << " FOUND" << endl;
         } else {
           cout << "VALUE " << number << " NOT FOUND" << endl;
@@ -62,6 +67,7 @@ if (list == nullptr && cmd != "C") {
         break;
       case 'I':
         cout << "VALUE " << number << " INSERTED" << endl; list->insert(number);
+        break;
       case 'N':
         cout << "LIST SIZE IS " << list->get_Size() << endl;
         break;
@@ -70,23 +76,46 @@ if (list == nullptr && cmd != "C") {
         break;
       case 'R':
         if(list->removeOne(number)){
-          cout << "Value " << number << " REMOVED" << endl;
+          cout << "VALUE " << number << " REMOVED" << endl;
         } else {
-          cout << "VALUE " << number << " FOUND" << endl;
+          cout << "VALUE " << number << " NOT FOUND" << endl;
         }
         break;
       case 'T':
-        cout << "REMOVED HEAD" << endl; list->removeHead();
-        break;
+        try{
+             if(list->removeHead()){
+               cout << "REMOVED HEAD" << endl;
+             }else{
+               cout << "LIST EMPTY" << endl;
+             }
+		      } catch (logic_error e)
+	         {
+	            cout << e.what() << endl;
+	           }
+             break;
       case 'K':
-        cout << "REMOVED TAIL" << endl; list->removeTail();
-        break;
+	      try{
+             if(list->removeTail()){
+               cout << "REMOVED TAIL" << endl;
+             }else{
+               cout << "LIST EMPTY" << endl;
+             }
+	          } catch (logic_error e)
+	           {
+	              cout << e.what() << endl;
+	             }
+               break;
       case 'X':
         cout << "LIST CLEARED" << endl; list->clear();
         break;
       case 'Z':
-        cout << "VALUE " << list->tailContents() << " AT TAIL" << endl;
-        break;
+	      try{
+            cout << "VALUE " << list->tailContents() << " AT TAIL" << endl;
+	          } catch (logic_error e)
+	           {
+	   	          cout << e.what() << endl;
+	             }
+               break;
     }
     return("");
   }
@@ -101,7 +130,7 @@ if (list == nullptr && cmd != "C") {
   @param filename the name of the file to Load
   @return true if the file is sucessfully processed, else false
     */
-    bool loadFile(string filename, DLList<uint32_t> *list){
+    bool loadFile(string filename, DLList<uint32_t> *& list){
       string arr;
       string first;
       string second;

@@ -96,10 +96,10 @@ var change = 0;
 $('.coins').on('click', function() {
   var index = $(this).index();
   pay += money[index].price;
-
+  $('#pay').html(pay + " paid pennies");
   var newSum = $('#sum').text();
 
-  var paytrue = ((pay/100) > sum);
+  var paytrue = ((pay/100) >= sum);
   if (paytrue) {
      change = (pay - (sum * 100));
     var changeStr = "Your change is: " + (change / 100);
