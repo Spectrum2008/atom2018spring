@@ -1,3 +1,9 @@
+//####################################################################//
+//###########PROJECT 3 DOUBLY LINKED LIST############################//
+//##################################################################//
+//Honorio Benitez,
+//April 25
+
 //Your program will read in and process, from a text file,
 // a series of commands for a template doubly linked list.
 // Each line of the input file will contain a single command,
@@ -15,20 +21,18 @@ those functions
 @param this
 a number that will be used as the command
 */
-  string doCommand(string cmd, uint32_t number, DLList<uint32_t> *& list) {
-
-if (list == nullptr && cmd[0] != 'C') {
-  return("MUST CREATE LIST INSTANCE\n");
-}
+string doCommand(string cmd, uint32_t number, DLList<uint32_t> *& list) {
+  if (list == nullptr && cmd[0] != 'C') {
+    return("MUST CREATE LIST INSTANCE\n");
+  }
     switch(cmd[0]) {
       case 'A':
 	      try{
             cout << "VALUE " << list->headContents() << " AT HEAD" << endl;//done.
-	           } catch (logic_error e)
-	            {
-	               cout << e.what() << endl;
-	              }
-	     break;
+	      } catch (logic_error e){
+	          cout << e.what() << endl;
+	        }
+	      break;
       case 'B':
         cout << "VALUE " << number << " ADDED TO TAIL" << endl; list->pushBack(number);//done.
         break;
@@ -83,39 +87,36 @@ if (list == nullptr && cmd[0] != 'C') {
         break;
       case 'T':
         try{
-             if(list->removeHead()){
-               cout << "REMOVED HEAD" << endl;
-             }else{
-               cout << "LIST EMPTY" << endl;
-             }
-		      } catch (logic_error e)
-	         {
-	            cout << e.what() << endl;
-	           }
-             break;
+          if(list->removeHead()){
+            cout << "REMOVED HEAD" << endl;
+          }else{
+            cout << "LIST EMPTY" << endl;
+          }
+		    } catch (logic_error e){
+	          cout << e.what() << endl;
+	        }
+        break;
       case 'K':
 	      try{
-             if(list->removeTail()){
-               cout << "REMOVED TAIL" << endl;
-             }else{
-               cout << "LIST EMPTY" << endl;
-             }
-	          } catch (logic_error e)
-	           {
-	              cout << e.what() << endl;
-	             }
-               break;
+          if(list->removeTail()){
+            cout << "REMOVED TAIL" << endl;
+          }else{
+            cout << "LIST EMPTY" << endl;
+          }
+	      } catch (logic_error e){
+	          cout << e.what() << endl;
+	        }
+        break;
       case 'X':
         cout << "LIST CLEARED" << endl; list->clear();
         break;
       case 'Z':
 	      try{
             cout << "VALUE " << list->tailContents() << " AT TAIL" << endl;
-	          } catch (logic_error e)
-	           {
-	   	          cout << e.what() << endl;
-	             }
-               break;
+	      } catch (logic_error e){
+	   	      cout << e.what() << endl;
+	        }
+        break;
     }
     return("");
   }
@@ -156,7 +157,13 @@ if (list == nullptr && cmd[0] != 'C') {
     }
 
 int main(int argc, char const *argv[]) {
-
+/*
+*initialize list pointer to nullptr
+*the file string has to come as an argument in argv
+*send message wrong filename if there are two arguments but failed
+*it will fail if the loadfile returns false else true.
+*send message "Usage: program.exe if there is not a second parameter"
+*/
    DLList<uint32_t>* list = nullptr;
    if(argc == 2 && loadFile(argv[1], list)){
 

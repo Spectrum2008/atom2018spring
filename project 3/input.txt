@@ -1,3 +1,4 @@
+# this is yours teacher.and the output.
 # check "must create"
 P
 K
