@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/honorio/CLionProjects/untitled/Exagon.cpp
+Exagon.h
+/home/honorio/CLionProjects/untitled/Exagon.h
+
+/home/honorio/CLionProjects/untitled/Exagon.h
+iostream
+-
+
+/home/honorio/CLionProjects/untitled/main.cpp
+Exagon.h
+/home/honorio/CLionProjects/untitled/Exagon.h
+iostream
+-
+
